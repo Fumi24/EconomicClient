@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
-        <RootNamespace>Hexio.EconomicClient.Test</RootNamespace>
+        <RootNamespace>Fumi24.EconomicClient.Test</RootNamespace>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 

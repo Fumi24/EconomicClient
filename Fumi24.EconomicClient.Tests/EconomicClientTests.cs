@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Fumi24.EconomicClient;
 using Fumi24.EconomicClient.CreateModels;
 using Fumi24.EconomicClient.ReadModels;
 using Xunit;
@@ -14,7 +13,7 @@ using Product = Fumi24.EconomicClient.CreateModels.Product;
 using References = Fumi24.EconomicClient.CreateModels.References;
 using Unit = Fumi24.EconomicClient.CreateModels.Unit;
 
-namespace Hexio.EconomicClient.Test
+namespace Fumi24.EconomicClient.Test
 {
     public class EconomicClientTests
     {
