@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fumi24.EconomicClient", "Fumi24.EconomicClient\Fumi24.EconomicClient.csproj", "{296039AE-04B3-493D-8B8C-ACBC4798D619}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hexio.EconomicClient.Tests", "Hexio.EconomicClient.Tests\Hexio.EconomicClient.Tests.csproj", "{33206411-6E2C-4651-9DEA-00631274D58B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fumi24.EconomicClient.Tests", "Fumi24.EconomicClient.Tests\Fumi24.EconomicClient.Tests.csproj", "{33206411-6E2C-4651-9DEA-00631274D58B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

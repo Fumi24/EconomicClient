@@ -8,7 +8,7 @@
         <Authors>Fumi24</Authors>
         <PackageLicenseUrl>https://raw.githubusercontent.com/Fumi24/EconomicClient/refs/heads/master/LICENSE</PackageLicenseUrl>
         <RepositoryUrl>https://github.com/Fumi24/EconomicClient</RepositoryUrl>
-        <LangVersion>14</LangVersion>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
