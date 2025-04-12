@@ -83,14 +83,6 @@ namespace Hexio.EconomicClient
         [Delete("invoices/drafts/{draftInvoiceNumber}")]
         Task DeleteInvoiceDraft([Path] long draftInvoiceNumber);
 
-        /*
-        [Post("quotes/drafts")]
-        Task<QuoteReadModel> CreateQoute([Body] CreateQoute model);
-
-        [Post("quotes/sent")]
-        Task<QuoteReadModel> MarkQuoteAsSend([Body] MarkQuoteAsSendModel model);
-        */
-
         [Get("products")]
         Task<ResponseCollection<ProductReadModel>> GetProducts([RawQueryString] QueryFilter<ProductReadModel> filter = null);
         
@@ -102,6 +94,12 @@ namespace Hexio.EconomicClient
 
         [Get("products/{productNumber}")]
         Task<ProductReadModel> GetProduct([Path] string productNumber);
+
+        [Put("products/{productNumber}")]
+        Task<ProductReadModel> UpdateProduct([Path] string productNubmer);
+        
+        [Delete("products/{productNumber}")]
+        Task DeleteProduct([Path] string productNumber);
         
         [Get("layouts")]
         Task<ResponseCollection<LayoutModel>> GetLayouts();
