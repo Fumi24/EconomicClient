@@ -16,6 +16,7 @@ namespace Hexio.EconomicClient.ReadModels
         public string ProductNumber { get; set; }
         public decimal RecommendedPrice { get; set; }
         public decimal SalesPrice { get; set; }
+        public string LastUpdated { get; set; }
         public Uri Self { get; set; }
         public Unit Unit { get; set; }
 
