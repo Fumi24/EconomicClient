@@ -1,4 +1,4 @@
-namespace Hexio.EconomicClient
+namespace Fumi24.EconomicClient
 {
     public class EconomicSettings
     {

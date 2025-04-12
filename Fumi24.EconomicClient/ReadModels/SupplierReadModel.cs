@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Hexio.EconomicClient.CreateModels;
+using Fumi24.EconomicClient.CreateModels;
 
-namespace Hexio.EconomicClient.ReadModels
+namespace Fumi24.EconomicClient.ReadModels
 {
     public class SupplierReadModel : IReadModel
     {

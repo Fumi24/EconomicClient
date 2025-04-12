@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Hexio.EconomicClient;
-using Hexio.EconomicClient.CreateModels;
-using Hexio.EconomicClient.ReadModels;
+using Fumi24.EconomicClient;
+using Fumi24.EconomicClient.CreateModels;
+using Fumi24.EconomicClient.ReadModels;
 using Xunit;
-using Customer = Hexio.EconomicClient.CreateModels.Customer;
-using Line = Hexio.EconomicClient.CreateModels.Line;
-using PaymentTerms = Hexio.EconomicClient.CreateModels.PaymentTerms;
-using Product = Hexio.EconomicClient.CreateModels.Product;
-using References = Hexio.EconomicClient.CreateModels.References;
-using Unit = Hexio.EconomicClient.CreateModels.Unit;
+using Customer = Fumi24.EconomicClient.CreateModels.Customer;
+using Line = Fumi24.EconomicClient.CreateModels.Line;
+using PaymentTerms = Fumi24.EconomicClient.CreateModels.PaymentTerms;
+using Product = Fumi24.EconomicClient.CreateModels.Product;
+using References = Fumi24.EconomicClient.CreateModels.References;
+using Unit = Fumi24.EconomicClient.CreateModels.Unit;
 
 namespace Hexio.EconomicClient.Test
 {

@@ -1,4 +1,4 @@
-namespace Hexio.EconomicClient.CreateModels
+namespace Fumi24.EconomicClient.CreateModels
 {
     public class MarkQuoteAsSendModel
     {

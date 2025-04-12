@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
-using Hexio.EconomicClient.ReadModels;
+using Fumi24.EconomicClient.ReadModels;
 
-namespace Hexio.EconomicClient
+namespace Fumi24.EconomicClient
 {
     public enum QueryOperator
     {

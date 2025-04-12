@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
         <RootNamespace>Hexio.EconomicClient.Test</RootNamespace>
+        <LangVersion>14</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Hexio.EconomicClient\Hexio.EconomicClient.csproj" />
+        <ProjectReference Include="..\Fumi24.EconomicClient\Fumi24.EconomicClient.csproj" />
     </ItemGroup>
 
     <ItemGroup>

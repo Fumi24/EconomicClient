@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using RestEase;
 
-namespace Hexio.EconomicClient
+namespace Fumi24.EconomicClient
 {
     public class EconomicClientFactory
     {

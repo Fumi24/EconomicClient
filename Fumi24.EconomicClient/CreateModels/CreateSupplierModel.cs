@@ -1,6 +1,6 @@
-using Hexio.EconomicClient.ReadModels;
+using Fumi24.EconomicClient.ReadModels;
 
-namespace Hexio.EconomicClient.CreateModels
+namespace Fumi24.EconomicClient.CreateModels
 {
     public class CreateSupplierModel
     {

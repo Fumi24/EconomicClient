@@ -3,13 +3,15 @@ using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Hexio.EconomicClient.CreateModels;
-using Hexio.EconomicClient.ReadModels;
+using Fumi24.EconomicClient.CreateModels;
+using Fumi24.EconomicClient.ReadModels;
 using RestEase;
-using PaymentTerms = Hexio.EconomicClient.CreateModels.PaymentTerms;
+using PaymentTerms = Fumi24.EconomicClient.CreateModels.PaymentTerms;
 
-namespace Hexio.EconomicClient
+namespace Fumi24.EconomicClient
 {
+    using PaymentTerms = CreateModels.PaymentTerms;
+
     public interface IEconomicClient
     {
         [Header("X-AppSecretToken")]

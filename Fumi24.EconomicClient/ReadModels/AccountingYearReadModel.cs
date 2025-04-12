@@ -1,6 +1,6 @@
 using System;
 
-namespace Hexio.EconomicClient.ReadModels
+namespace Fumi24.EconomicClient.ReadModels
 {
     public class AccountingYearReadModel
     {
