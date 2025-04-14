@@ -98,7 +98,7 @@ namespace Fumi24.EconomicClient
         Task<ProductReadModel> GetProduct([Path] string productNumber);
 
         [Put("products/{productNumber}")]
-        Task<ProductReadModel> UpdateProduct([Path] string productNubmer);
+        Task<ProductReadModel> UpdateProduct([Path] string productNumber, [Body] CreateProductModel updateProductModel);
         
         [Delete("products/{productNumber}")]
         Task DeleteProduct([Path] string productNumber);

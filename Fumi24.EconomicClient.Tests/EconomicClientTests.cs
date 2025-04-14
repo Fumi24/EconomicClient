@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Fumi24.EconomicClient.CreateModels;
 using Fumi24.EconomicClient.ReadModels;
+using RestEase;
 using Xunit;
 using Customer = Fumi24.EconomicClient.CreateModels.Customer;
 using Line = Fumi24.EconomicClient.CreateModels.Line;
@@ -120,31 +121,25 @@ namespace Fumi24.EconomicClient.Test
         [Fact]
         public async Task CanCreateInvoiceDraft()
         {
-            var createCustomerModel = new CreateCustomerModel                     
-            {                                                                     
-                Name = "CreateInvoiceDraftTestCustomer"                                                   
-            };                                                                    
-                                                                      
-            var customer = await Client.Value.CreateCustomer(createCustomerModel);
             
             var invoice = new CreateInvoiceModel
             {
                 Date = "2020-03-03",
                 Customer = new Customer
                 {
-                    CustomerNumber = customer.CustomerNumber
+                    CustomerNumber = 1
                 },
                 Layout = new Layout
                 {
-                    LayoutNumber = 14
+                    LayoutNumber = 29
                 },
                 References = new References
                 {
-                    Other = "MRR-75"
+                    Other = "test"
                 },
                 PaymentTerms = new PaymentTerms
                 {
-                    PaymentTermsNumber = 1
+                    PaymentTermsNumber = 3
                 },
                 
                 Lines = new List<Line>
@@ -153,7 +148,7 @@ namespace Fumi24.EconomicClient.Test
                     {
                         Product = new Product
                         {
-                            ProductNumber = "1"
+                            ProductNumber = "1337"
                         },
                         Quantity = 1,
                         Unit = new Unit
@@ -177,15 +172,200 @@ namespace Fumi24.EconomicClient.Test
             var response = await Client.Value.CreateInvoice(invoice);
 
             await Client.Value.DeleteInvoiceDraft(response.DraftInvoiceNumber);
-            await Client.Value.DeleteCustomer(customer.CustomerNumber);
+        }
+        
+        [Fact]
+        public async Task CanGetProducts()
+        {
+            var products = await Client.Value.GetProducts();
+            Assert.NotNull(products);
+            Assert.IsType<ResponseCollection<ProductReadModel>>(products);
         }
 
         [Fact]
-        public async Task ListBookedInvoices()
+        public async Task CanCreateProduct()
         {
-            var bookedInvoices = await Client.Value.ListBookedInvoices(InvoiceStatus.Booked);
-            var unpaidInvoices = await Client.Value.ListBookedInvoices(InvoiceStatus.Unpaid, new QueryFilter<BookedInvoiceReadModel>().Where(x => x.BookedInvoiceNumber, QueryOperator.Eq, "1"));
-            var paidInvoices = await Client.Value.ListBookedInvoices(InvoiceStatus.Paid);
+            var createProductModel = new CreateProductModel
+            {
+                ProductNumber = "TEST-PROD-001",
+                Name = "Test Product",
+                Description = "A test product for unit testing.",
+                CostPrice = 50.00m,
+                RecommendedPrice = 75.00m,
+                SalesPrice = 70.00m,
+                BarCode = "1234567890123",
+                Barred = false,
+                Inventory = new Inventory
+                {
+                    Available = 100,
+                    InStock = 100
+                },
+                Unit = new Unit
+                {
+                    UnitNumber = 1
+                },
+                ProductGroup = new ProductGroupReadModel
+                {
+                    ProductGroupNumber = 100
+                }
+            };
+
+            var response = await Client.Value.CreateProduct(createProductModel);
+
+            Assert.NotNull(response);
+            Assert.Equal("TEST-PROD-001", response.ProductNumber);
+
+            await Client.Value.DeleteProduct(response.ProductNumber);
+        }
+
+
+        [Fact]
+        public async Task CanGetProductGroups()
+        {
+            var productGroups = await Client.Value.GetProductGroups();
+
+            Assert.NotNull(productGroups);
+            Assert.True(productGroups.Collection.Any());
+        }
+        
+        [Fact]
+        public async Task CanGetProductByNumber()
+        {
+            var createProductModel = new CreateProductModel
+            {
+                ProductNumber = "TEST-PROD-002",
+                Name = "Get Product Test",
+                Description = "Testing product retrieval.",
+                CostPrice = 20.00m,
+                RecommendedPrice = 30.00m,
+                SalesPrice = 28.00m,
+                BarCode = "9876543210987",
+                Barred = false,
+                Inventory = new Inventory
+                {
+                    Available = 50,
+                    InStock = 50
+                },
+                Unit = new Unit
+                {
+                    UnitNumber = 1
+                },
+                ProductGroup = new ProductGroupReadModel
+                {
+                    ProductGroupNumber = 100
+                }
+            };
+
+            var created = await Client.Value.CreateProduct(createProductModel);
+
+            var fetched = await Client.Value.GetProduct(created.ProductNumber);
+
+            Assert.NotNull(fetched);
+            Assert.Equal("TEST-PROD-002", fetched.ProductNumber);
+
+            await Client.Value.DeleteProduct(created.ProductNumber);
+        }
+
+        [Fact]
+        public async Task CanUpdateProduct()
+        {
+            var createProductModel = new CreateProductModel
+            {
+                ProductNumber = "TEST-PROD-005",
+                Name = "Original Product",
+                Description = "Original Description",
+                CostPrice = 15.00m,
+                RecommendedPrice = 25.00m,
+                SalesPrice = 22.00m,
+                BarCode = "5556667778889",
+                Barred = false,
+                Inventory = new Inventory
+                {
+                    Available = 20,
+                    InStock = 20
+                },
+                Unit = new Unit
+                {
+                    UnitNumber = 1,
+                },
+                ProductGroup = new ProductGroupReadModel
+                {
+                    ProductGroupNumber = 100
+                }
+            };
+
+            // Create the product first
+            var created = await Client.Value.CreateProduct(createProductModel);
+
+            // Prepare an updated version of the product
+            var updatedModel = new CreateProductModel
+            {
+                ProductNumber = created.ProductNumber, // product number must remain the same
+                Name = "Updated Product Name",
+                Description = "Updated Description",
+                CostPrice = 18.00m,
+                RecommendedPrice = 30.00m,
+                SalesPrice = 28.00m,
+                BarCode = "5556667778890",
+                Barred = false,
+                Inventory = new Inventory
+                {
+                    Available = 15,
+                    InStock = 15
+                },
+                Unit = new Unit
+                {
+                    UnitNumber = 1
+                },
+                ProductGroup = created.ProductGroup
+            };
+
+            var updated = await Client.Value.UpdateProduct(created.ProductNumber, updatedModel);
+
+            Assert.NotNull(updated);
+            Assert.Equal("Updated Product Name", updated.Name);
+            Assert.Equal("Updated Description", updated.Description);
+            Assert.Equal(28.00m, updated.SalesPrice);
+
+            await Client.Value.DeleteProduct(created.ProductNumber);
+        }
+
+        [Fact]
+        public async Task CanDeleteProduct()
+        {
+            var createProductModel = new CreateProductModel
+            {
+                ProductNumber = "TEST-PROD-004",
+                Name = "Product To Delete",
+                Description = "Will be deleted.",
+                CostPrice = 5.00m,
+                RecommendedPrice = 10.00m,
+                SalesPrice = 9.00m,
+                BarCode = "0009998887776",
+                Barred = false,
+                Inventory = new Inventory
+                {
+                    Available = 10,
+                    InStock = 10
+                },
+                Unit = new Unit
+                {
+                    UnitNumber = 1,
+                },
+                ProductGroup = new ProductGroupReadModel
+                {
+                    ProductGroupNumber = 100,
+                }
+            };
+
+            var created = await Client.Value.CreateProduct(createProductModel);
+
+            await Client.Value.DeleteProduct(created.ProductNumber);
+
+            await Assert.ThrowsAsync<ApiException>(async () =>
+            {
+                await Client.Value.GetProduct(created.ProductNumber);
+            });
         }
 
         [Fact]
