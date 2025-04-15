@@ -92,7 +92,7 @@ namespace Fumi24.EconomicClient
         Task<ProductReadModel> CreateProduct([Body] CreateProductModel createProductModel);
         
         [Get("product-groups")]
-        Task<ResponseCollection<ProductGroupReadModel>> GetProductGroups([RawQueryString] QueryFilter<ProductReadModel> filter = null);
+        Task<ResponseCollection<ProductGroupReadModel>> GetProductGroups([RawQueryString] QueryFilter<ProductGroupReadModel> filter = null);
 
         [Get("products/{productNumber}")]
         Task<ProductReadModel> GetProduct([Path] string productNumber);
@@ -104,7 +104,7 @@ namespace Fumi24.EconomicClient
         Task DeleteProduct([Path] string productNumber);
         
         [Get("layouts")]
-        Task<ResponseCollection<LayoutModel>> GetLayouts([RawQueryString] QueryFilter<ProductReadModel> filter = null);
+        Task<ResponseCollection<LayoutModel>> GetLayouts();
         
         [Get("payment-terms")]
         Task<ResponseCollection<PaymentTerms>> GetPaymentTerms([RawQueryString] QueryFilter<PaymentTerms> filter = null);

@@ -29,10 +29,17 @@ namespace Fumi24.EconomicClient.ReadModels
         };
     }
 
-    public class ProductGroupReadModel
+    public class ProductGroupReadModel : IReadModel
     {
         public int ProductGroupNumber { get; set; }
         public string name { get; set; }
+        public IList<string> FieldsToFilter { get; } = new List<string>()
+        {
+            "barCode", "barred", "costPrice", "departmentalDistribution.departmentalDistributionNumber", "description",
+            "inventory.grossWeight", "inventory.netWeight", "inventory.packageVolume", "inventory.recommendedCostPrice",
+            "lastUpdated", "name", "productGroup.productGroupNumber", "productNumber", "recommendedPrice", "salesPrice",
+            "unit.unitNumber"
+        };
     }
 
     public class Inventory
