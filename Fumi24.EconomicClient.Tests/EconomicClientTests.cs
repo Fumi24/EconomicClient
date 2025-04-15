@@ -177,7 +177,7 @@ namespace Fumi24.EconomicClient.Test
         [Fact]
         public async Task CanGetProducts()
         {
-            var products = await Client.Value.GetProducts();
+            var products = await Client.Value.GetProduct();
             Assert.NotNull(products);
             Assert.IsType<ResponseCollection<ProductReadModel>>(products);
         }

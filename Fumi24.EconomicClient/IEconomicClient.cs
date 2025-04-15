@@ -86,13 +86,13 @@ namespace Fumi24.EconomicClient
         Task DeleteInvoiceDraft([Path] long draftInvoiceNumber);
 
         [Get("products")]
-        Task<ResponseCollection<ProductReadModel>> GetProducts([RawQueryString] QueryFilter<ProductReadModel> filter = null);
+        Task<ResponseCollection<ProductReadModel>> GetProduct([RawQueryString] QueryFilter<ProductReadModel> filter = null);
         
         [Post("products")]
         Task<ProductReadModel> CreateProduct([Body] CreateProductModel createProductModel);
         
         [Get("product-groups")]
-        Task<ResponseCollection<ProductGroupReadModel>> GetProductGroups();
+        Task<ResponseCollection<ProductGroupReadModel>> GetProductGroups([RawQueryString] QueryFilter<ProductReadModel> filter = null);
 
         [Get("products/{productNumber}")]
         Task<ProductReadModel> GetProduct([Path] string productNumber);
@@ -104,7 +104,7 @@ namespace Fumi24.EconomicClient
         Task DeleteProduct([Path] string productNumber);
         
         [Get("layouts")]
-        Task<ResponseCollection<LayoutModel>> GetLayouts();
+        Task<ResponseCollection<LayoutModel>> GetLayouts([RawQueryString] QueryFilter<ProductReadModel> filter = null);
         
         [Get("payment-terms")]
         Task<ResponseCollection<PaymentTerms>> GetPaymentTerms([RawQueryString] QueryFilter<PaymentTerms> filter = null);
