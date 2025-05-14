@@ -7,6 +7,7 @@ using Fumi24.EconomicClient.CreateModels;
 using Fumi24.EconomicClient.ReadModels;
 using RestEase;
 using PaymentTerms = Fumi24.EconomicClient.CreateModels.PaymentTerms;
+using Unit = Fumi24.EconomicClient.ReadModels.Unit;
 
 namespace Fumi24.EconomicClient
 {
@@ -85,6 +86,9 @@ namespace Fumi24.EconomicClient
         [Delete("invoices/drafts/{draftInvoiceNumber}")]
         Task DeleteInvoiceDraft([Path] long draftInvoiceNumber);
 
+        [Get("units")]
+        Task<ResponseCollection<Unit>> GetUnits();
+        
         [Get("products")]
         Task<ResponseCollection<ProductReadModel>> GetProduct([RawQueryString] QueryFilter<ProductReadModel> filter = null);
         

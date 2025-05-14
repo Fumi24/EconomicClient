@@ -181,6 +181,15 @@ namespace Fumi24.EconomicClient.Test
             Assert.NotNull(products);
             Assert.IsType<ResponseCollection<ProductReadModel>>(products);
         }
+        
+                
+        [Fact]
+        public async Task CanGetUnits()
+        {
+            var units = await Client.Value.GetUnits();
+            Assert.NotNull(units);
+            Assert.IsType<ResponseCollection<ReadModels.Unit>>(units);
+        }
 
         [Fact]
         public async Task CanCreateProduct()
